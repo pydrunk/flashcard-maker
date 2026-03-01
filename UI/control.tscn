@@ -1,0 +1,202 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8truvv01hp2w"]
+
+[ext_resource type="Script" uid="uid://fjwysedcy1ax" path="res://scripts/control.gd" id="1_er0wr"]
+[ext_resource type="Script" uid="uid://5fd3dencqtm" path="res://scripts/create_group.gd" id="1_filc1"]
+[ext_resource type="Script" uid="uid://bb7coa7atiwmv" path="res://scripts/groupoptions.gd" id="2_nh5hm"]
+[ext_resource type="Script" uid="uid://y6odm6f8yavc" path="res://scripts/create.gd" id="4_c20no"]
+[ext_resource type="Script" uid="uid://bje0rps72ixoe" path="res://scripts/group_options.gd" id="5_c20no"]
+[ext_resource type="Script" uid="uid://deoivje0uadew" path="res://scripts/managegroups.gd" id="6_1xo2p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c20no"]
+bg_color = Color(0.5148637, 0.5958833, 0.9170747, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_er0wr")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+offset_right = 404.0
+offset_bottom = 215.0
+current_tab = 2
+
+[node name="Create" type="PanelContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Create"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Create/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="create group" type="VBoxContainer" parent="TabContainer/Create/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("1_filc1")
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Create/HBoxContainer/MarginContainer/create group"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="TabContainer/Create/HBoxContainer/MarginContainer/create group/MarginContainer"]
+layout_mode = 2
+text = "create group"
+
+[node name="TextEdit" type="TextEdit" parent="TabContainer/Create/HBoxContainer/MarginContainer/create group"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "enter name here"
+
+[node name="Button" type="Button" parent="TabContainer/Create/HBoxContainer/MarginContainer/create group"]
+layout_mode = 2
+text = "submit"
+
+[node name="MarginContainer2" type="MarginContainer" parent="TabContainer/Create/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="create flashcard" type="VBoxContainer" parent="TabContainer/Create/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="label" type="Label" parent="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard/MarginContainer"]
+layout_mode = 2
+text = "create flashcard"
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "question"
+
+[node name="LineEdit2" type="LineEdit" parent="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "answer"
+
+[node name="Label" type="Label" parent="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard"]
+layout_mode = 2
+text = "group"
+
+[node name="OptionButton" type="OptionButton" parent="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("2_nh5hm")
+
+[node name="create flashcard" type="Button" parent="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "create"
+script = ExtResource("4_c20no")
+
+[node name="View" type="PanelContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/View"]
+layout_mode = 2
+
+[node name="group options" type="OptionButton" parent="TabContainer/View/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("5_c20no")
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/View/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/View/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c20no")
+
+[node name="flashcard label" type="Label" parent="TabContainer/View/VBoxContainer/MarginContainer/PanelContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/View/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/View/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+
+[node name="swap" type="Button" parent="TabContainer/View/VBoxContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "swap"
+
+[node name="MarginContainer2" type="MarginContainer" parent="TabContainer/View/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 90
+
+[node name="next" type="Button" parent="TabContainer/View/VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+text = "next"
+
+[node name="Manage" type="PanelContainer" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Manage"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Manage/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Manage/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="managegroups" type="OptionButton" parent="TabContainer/Manage/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("6_1xo2p")
+
+[node name="Button" type="Button" parent="TabContainer/Manage/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Delete group"
+
+[connection signal="added_group" from="TabContainer/Create/HBoxContainer/MarginContainer/create group" to="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard/OptionButton" method="_on_create_group_added_group"]
+[connection signal="added_group" from="TabContainer/Create/HBoxContainer/MarginContainer/create group" to="TabContainer/View/VBoxContainer/group options" method="_on_create_group_added_group"]
+[connection signal="added_group" from="TabContainer/Create/HBoxContainer/MarginContainer/create group" to="TabContainer/Manage/MarginContainer/HBoxContainer/VBoxContainer/managegroups" method="_on_create_group_added_group"]
+[connection signal="pressed" from="TabContainer/Create/HBoxContainer/MarginContainer/create group/Button" to="TabContainer/Create/HBoxContainer/MarginContainer/create group" method="_on_button_pressed"]
+[connection signal="created_flashcard" from="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard/create flashcard" to="TabContainer/View/VBoxContainer/group options" method="_on_create_flashcard_created_flashcard"]
+[connection signal="pressed" from="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard/create flashcard" to="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard/create flashcard" method="_on_pressed"]
+[connection signal="item_selected" from="TabContainer/View/VBoxContainer/group options" to="TabContainer/View/VBoxContainer/group options" method="_on_item_selected"]
+[connection signal="pressed" from="TabContainer/View/VBoxContainer/HBoxContainer/MarginContainer/swap" to="TabContainer/View/VBoxContainer/group options" method="_on_swap_pressed"]
+[connection signal="pressed" from="TabContainer/View/VBoxContainer/HBoxContainer/MarginContainer2/next" to="TabContainer/View/VBoxContainer/group options" method="_on_next_pressed"]
+[connection signal="deleted_group" from="TabContainer/Manage/MarginContainer/HBoxContainer/VBoxContainer/managegroups" to="TabContainer/Create/HBoxContainer/MarginContainer/create group" method="_on_managegroups_deleted_group"]
+[connection signal="pressed" from="TabContainer/Manage/MarginContainer/HBoxContainer/VBoxContainer/Button" to="TabContainer/Manage/MarginContainer/HBoxContainer/VBoxContainer/managegroups" method="_on_button_pressed"]
