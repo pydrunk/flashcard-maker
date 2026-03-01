@@ -8,6 +8,7 @@ signal created_flashcard
 
 func _ready() -> void:
 	saved_all_flashcards = ResourceLoader.load("user://awesome_saves.tres")
+
 func _on_pressed() -> void:
 	if question_line.text != "" and answer_line.text != "" and group_option.selected != -1:
 		var new_flashcard = flashcard.new()
@@ -22,3 +23,11 @@ func _on_pressed() -> void:
 		question_line.text = ""
 		answer_line.text = ""
 		created_flashcard.emit()
+
+
+
+
+func _on_delete_pressed() -> void:
+	saved_all_flashcards.groups[%"group options".get_item_text(%"group options".selected)].erase(%"group options".picked)
+	ResourceSaver.save(saved_all_flashcards, "user://awesome_saves.tres")
+	%"group options".change_flashcard()

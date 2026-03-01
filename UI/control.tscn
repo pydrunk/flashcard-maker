@@ -12,18 +12,14 @@ bg_color = Color(0.5148637, 0.5958833, 0.9170747, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_er0wr")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
 offset_right = 404.0
-offset_bottom = 215.0
-current_tab = 2
+offset_bottom = 240.0
+current_tab = 1
 
 [node name="Create" type="PanelContainer" parent="TabContainer"]
 visible = false
@@ -113,7 +109,6 @@ text = "create"
 script = ExtResource("4_c20no")
 
 [node name="View" type="PanelContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -121,6 +116,7 @@ metadata/_tab_index = 1
 layout_mode = 2
 
 [node name="group options" type="OptionButton" parent="TabContainer/View/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("5_c20no")
 
@@ -143,10 +139,20 @@ autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/View/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="MarginContainer3" type="MarginContainer" parent="TabContainer/View/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="delete" type="Button" parent="TabContainer/View/VBoxContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+text = "delete"
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/View/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 200
+theme_override_constants/margin_bottom = 10
 
 [node name="swap" type="Button" parent="TabContainer/View/VBoxContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
@@ -155,13 +161,14 @@ text = "swap"
 
 [node name="MarginContainer2" type="MarginContainer" parent="TabContainer/View/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 90
+theme_override_constants/margin_bottom = 10
 
 [node name="next" type="Button" parent="TabContainer/View/VBoxContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 text = "next"
 
 [node name="Manage" type="PanelContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -196,6 +203,8 @@ text = "Delete group"
 [connection signal="created_flashcard" from="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard/create flashcard" to="TabContainer/View/VBoxContainer/group options" method="_on_create_flashcard_created_flashcard"]
 [connection signal="pressed" from="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard/create flashcard" to="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard/create flashcard" method="_on_pressed"]
 [connection signal="item_selected" from="TabContainer/View/VBoxContainer/group options" to="TabContainer/View/VBoxContainer/group options" method="_on_item_selected"]
+[connection signal="pressed" from="TabContainer/View/VBoxContainer/HBoxContainer/MarginContainer3/delete" to="TabContainer/Create/HBoxContainer/MarginContainer2/create flashcard/create flashcard" method="_on_delete_pressed"]
+[connection signal="pressed" from="TabContainer/View/VBoxContainer/HBoxContainer/MarginContainer3/delete" to="TabContainer/View/VBoxContainer/group options" method="_on_delete_pressed"]
 [connection signal="pressed" from="TabContainer/View/VBoxContainer/HBoxContainer/MarginContainer/swap" to="TabContainer/View/VBoxContainer/group options" method="_on_swap_pressed"]
 [connection signal="pressed" from="TabContainer/View/VBoxContainer/HBoxContainer/MarginContainer2/next" to="TabContainer/View/VBoxContainer/group options" method="_on_next_pressed"]
 [connection signal="deleted_group" from="TabContainer/Manage/MarginContainer/HBoxContainer/VBoxContainer/managegroups" to="TabContainer/Create/HBoxContainer/MarginContainer/create group" method="_on_managegroups_deleted_group"]
