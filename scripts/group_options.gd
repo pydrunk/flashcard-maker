@@ -8,6 +8,7 @@ var currently_showing : showing = showing.question
 var picked : flashcard
 var all_groups = []
 func _ready():
+	%"question or answer label".text = "showing: question"
 	update_groups()
 	current_group = get_item_text(selected)
 	change_flashcard()
@@ -46,18 +47,21 @@ func change_flashcard():
 				
 				flashcard_display.text = picked.question
 				currently_showing = showing.question
-		
+				%"question or answer label".text = "showing: question"
 
 func _on_swap_pressed() -> void:
-	if not picked:
+	var all_saved_flashcards : Dictionary = %"create flashcard".saved_all_flashcards.groups
+	if not picked or not all_saved_flashcards.has(current_group):
 		return
 	match currently_showing:
 		showing.question:
 			flashcard_display.text = picked.answer
 			currently_showing = showing.answer
+			%"question or answer label".text = "showing: answer"
 		showing.answer:
 			flashcard_display.text = picked.question
 			currently_showing = showing.question
+			%"question or answer label".text = "showing: question"
 
 
 func _on_next_pressed() -> void:

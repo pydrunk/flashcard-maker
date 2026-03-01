@@ -120,6 +120,15 @@ unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("5_c20no")
 
+[node name="MarginContainer2" type="MarginContainer" parent="TabContainer/View/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="question or answer label" type="Label" parent="TabContainer/View/VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "question"
+
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/View/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -139,7 +148,7 @@ autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/View/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 120
+theme_override_constants/separation = 80
 
 [node name="MarginContainer3" type="MarginContainer" parent="TabContainer/View/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -157,7 +166,7 @@ theme_override_constants/margin_bottom = 10
 [node name="swap" type="Button" parent="TabContainer/View/VBoxContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "swap"
+text = "flip flashcard"
 
 [node name="MarginContainer2" type="MarginContainer" parent="TabContainer/View/VBoxContainer/HBoxContainer"]
 layout_mode = 2
